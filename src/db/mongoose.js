@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1/users', {
+mongoose.connect(process.env.MONGO_CONNECTION, {
     useNewUrlParser: true,
 })
 
