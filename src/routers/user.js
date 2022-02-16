@@ -52,7 +52,7 @@ router.post('/users/login', async (req,res)=>{
     if(!isAllowed){
         res.status(400).send({ Error:"Only email and password are valids arguments!" })
     }
-
+    
     try{ 
         const user = await User.findByCredentials(req.body.email,req.body.password) //Check if email and password is in database
         const token = await user.generateAuthToken() //Generate and save token to the user document db
