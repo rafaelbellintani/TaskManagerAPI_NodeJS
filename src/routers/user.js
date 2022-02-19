@@ -10,28 +10,7 @@ const sharp = require('sharp')
 
 router.get('/users', auth, async (req,res)=>{
     res.status(200).send(req.user)
-
-    //ANOTHER USE WITHOUT TOKEN
-    // try{
-    //     const users = await User.find({})
-    //     res.status(200).send(users)
-    // }catch(e){
-    //     res.status(500).send(e)
-    // }
 })
-
-// router.get('/users/:id', async (req,res)=>{
-//     if(req.params.id === 'login'){
-//         return res.status(500).send({Error: "Login is invalid with GET method, please use POST"})
-//     }
-
-//     try{
-//         const user = await User.findById(req.params.id)
-//         user ? res.status(200).send(user) : res.status(400).send({Error:"ID Not found"})
-//     }catch(e){
-//         res.status(500).send(e)
-//     }
-// })
 
 router.post('/users', async (req,res)=>{
     try{
@@ -58,7 +37,7 @@ router.post('/users/login', async (req,res)=>{
         const token = await user.generateAuthToken() //Generate and save token to the user document db
         res.status(200).send({ user, token })
     }catch(e){
-        res.status(400).send(e)
+        res.status(404).send()
     }
 })
 

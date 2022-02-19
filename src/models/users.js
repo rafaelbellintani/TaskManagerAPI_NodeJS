@@ -65,7 +65,6 @@ userSchema.methods.toJSON = function () {
 userSchema.methods.generateAuthToken = async function () { //this bind only works without array functions
     
     const token = jwt.sign({ '_id': this._id.toString() }, process.env.JWT_SECRET) //Create a jsonwebtoken with the payload ID, and define 'thisismynewcourse' as password for sign
-    console.log('x')
     this.tokens = this.tokens.concat({ token }) //in concat different of push, creates a new array with new element, in push elements are added in the existing array
     this.save()
 
